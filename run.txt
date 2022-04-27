@@ -1,0 +1,16 @@
+#Compile code
+mvn clean package -DskipTests
+
+# Run test database (SimpleDb)
+java \
+-cp target/jeeves-standalone.jar com.ldbc.driver.Client \
+-db com.ldbc.driver.workloads.simple.db.SimpleDb \
+-P target/classes/configuration/simple/simpleworkload.properties \
+-P target/classes/configuration/ldbc_driver_default.properties
+
+# Run actual database (MariaDb)
+java \
+-cp target/jeeves-standalone.jar com.ldbc.driver.Client \
+-db com.ldbc.driver.workloads.ldbc.snb.interactive.db.MariaDb \
+-P target/classes/configuration/ldbc/snb/interactive/ldbc_snb_interactive_SF-0001.properties \
+-P target/classes/configuration/ldbc_driver_default.properties
